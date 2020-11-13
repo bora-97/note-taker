@@ -24,8 +24,7 @@ router.post("/api/notes", function (req, res) {
 })
 router.delete("/api/notes/:id", function (req, res) {
     const db = JSON.parse(fs.readFileSync("./db/db.json"))
-    db.filter(item => item.id !== req.params.id)
-    fs.writeFileSync("./db/db.json", JSON.stringify(db))
+    fs.writeFileSync("./db/db.json", JSON.stringify(db.filter(item => item.id !== req.params.id)))
     res.status(200).end()
 })
 
